@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,12 +83,12 @@ public class CashbookController {
 		return "addCashbook"; // forward
 	}
 	
-	@GetMapping("/admin/cashbookByDay")
+	@GetMapping("/admin/cashbookByDay/{target}/{currentYear}/{currentMonth}/{currentDay}")
 	public String cashbookByDay(Model model,
-			@RequestParam(name = "target", defaultValue = "") String target,
-			@RequestParam(name = "currentYear", required = true) int currentYear,
-			@RequestParam(name = "currentMonth", required = true) int currentMonth,
-			@RequestParam(name = "currentDay", required = true) int currentDay) {
+			@PathVariable(name = "target") String target,
+			@PathVariable(name = "currentYear", required = true) int currentYear,
+			@PathVariable(name = "currentMonth", required = true) int currentMonth,
+			@PathVariable(name = "currentDay", required = true) int currentDay) {
 		Calendar targetDay = Calendar.getInstance();
 		targetDay.set(Calendar.YEAR, currentYear);
 		targetDay.set(Calendar.MONTH, currentMonth-1);
