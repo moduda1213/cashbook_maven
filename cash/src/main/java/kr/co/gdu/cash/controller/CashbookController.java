@@ -25,6 +25,17 @@ public class CashbookController {
 	@Autowired private CashbookService cashbookService;
 	@Autowired private CategoryService categoryService;
 	
+	//페이징 처리한 캐쉬북 전체 리스트
+	@GetMapping("/admin/cashbookList/{currentPage}")
+	public String cashbookList(Model model,
+							@PathVariable(name="currentPage", required = true) int currentPage) {
+		int rowPerPage = 20;
+		List<Cashbook> cashbookList = cashbookService.getCashbookListByPage(currentPage, rowPerPage);
+		model.addAttribute("cashbookList", cashbookList);
+		return "cashbookList";
+	}
+	
+	
 	//가계부 상세보기
 	@GetMapping("/admin/cashbookOne")
 	public String cashbookOne(Model model,
@@ -83,6 +94,7 @@ public class CashbookController {
 		return "addCashbook"; // forward
 	}
 	
+	
 	@GetMapping("/admin/cashbookByDay/{target}/{currentYear}/{currentMonth}/{currentDay}")
 	public String cashbookByDay(Model model,
 			@PathVariable(name = "target") String target,
@@ -110,6 +122,7 @@ public class CashbookController {
 		return "cashbookByDay";
 	}
 	
+	// 매 일 마다 보여지는 수입 , 지출
 	@GetMapping(value="/admin/cashbookByMonth")
 	public String cashbookByMonth(Model model,
 			@RequestParam(name ="target", defaultValue = "") String target,

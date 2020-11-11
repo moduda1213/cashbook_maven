@@ -16,6 +16,19 @@ import kr.co.gdu.cash.vo.Cashbook;
 public class CashbookService {
 	@Autowired private CashbookMapper cashBookMapper;
 	
+	//캐쉬북 전체 리스트
+	public List<Cashbook> getCashbookListAll(){
+		return cashBookMapper.selectCashbookListAll();
+	}
+	
+	//페이징 처리한 캐쉬북 전체 리스트
+	public List<Cashbook> getCashbookListByPage(int currentPage, int rowPerPage){
+		Map<String,Object> map = new HashMap<>();
+		map.put("beginRow", (currentPage-1)*rowPerPage);
+		map.put("rowPerPage", rowPerPage);
+		return cashBookMapper.selectCashbookListByPage(map);
+	}
+	
 	public int updateCashbook(Cashbook cashbook) {
 		return cashBookMapper.updateCashbook(cashbook);
 	}
