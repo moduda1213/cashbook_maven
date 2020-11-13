@@ -21,7 +21,7 @@
 		</a>
 		
 	</div>
-	<a href="/admin/addCashbook?currentYear=${currentYear}&currentMonth=${currentMonth}&currentDay=${currentDay}">수입/지출 입력</a>
+	<a href="/admin/addCashbook/${currentYear}/${currentMonth}/${currentDay}">수입/지출 입력</a>
 	<table border="1">
 		<thead>
 			<tr>
@@ -33,16 +33,16 @@
 				<th>수정</th>
 				<th>삭제</th>
 			</tr>
-		</thead>
+		</thead>	
 		<tbody>
 			<c:forEach var="c" items="${cashbookList}">
 				<tr>
 					<td>${c.cashbookId}</td>
 					<td>${c.cashbookKind}</td>
-					<td><a href="/admin/cashbookOne?cashbookId=${c.cashbookId}">${c.categoryName}</a></td>
+					<td><a href="/admin/cashbookOne/${c.cashbookId}">${c.categoryName}</a></td>
 					<td>${c.cashbookPrice}</td>
 					<td>${c.cashbookContent}</td>
-					<td><a href="/admin/updateCashbook?cashbookId=${c.cashbookId }&currentYear=${currentYear}&currentMonth=${currentMonth}&currentDay=${currentDay}">수정</a></td>
+					<td><a href="/admin/updateCashbook/${c.cashbookId}/${currentYear}/${currentMonth}/${currentDay}">수정</a></td>
 					<td><a href="/admin/deleteCashbook?cashbookId=${c.cashbookId }&currentYear=${currentYear}&currentMonth=${currentMonth}&currentDay=${currentDay}">삭제</a></td>
 				</tr>
 			</c:forEach>

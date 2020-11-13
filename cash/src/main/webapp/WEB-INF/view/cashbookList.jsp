@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>cashbookList</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
@@ -42,12 +43,22 @@
 	</div>
 	<div>
 		<c:if test="${currentPage == 1}">
-			<a href="/admin/cashbookList/${currentPage+1}">다음</a>
+			<a class="btn btn-secondary" href="">처음&nbsp;</a>
+			<a class="btn btn-secondary" href="">&nbsp;이전</a>
+			<a class="btn btn-secondary" href="/admin/cashbookList/${currentPage+1}">다음</a>
+			<a class="btn btn-secondary" href="/admin/cashbookList/${lastPage}">마지막</a>
 		</c:if>
-		
-		<c:if test="${currentPage > 1}">
-			<a href="/admin/cashbookList/${currentPage-1}">이전</a>
-		<a href="/admin/cashbookList/${currentPage+1}">다음</a>
+		<c:if test="${currentPage > 1 && currentPage < lastPage}">
+			<a class="btn btn-secondary" href="/admin/cashbookList/1">처음&nbsp;</a>
+			<a class="btn btn-secondary" href="/admin/cashbookList/${currentPage-1}">&nbsp;이전</a>
+			<a class="btn btn-secondary" href="/admin/cashbookList/${currentPage+1}">다음</a>
+			<a class="btn btn-secondary" href="/admin/cashbookList/${lastPage}">마지막</a>
+		</c:if>
+		<c:if test="${currentPage == lastPage}">
+			<a class="btn btn-secondary" href="/admin/cashbookList/1">처음&nbsp;</a>
+			<a class="btn btn-secondary" href="/admin/cashbookList/${currentPage-1}">&nbsp;이전</a>
+			<a class="btn btn-secondary" href="">다음&nbsp;</a>
+			<a class="btn btn-secondary" href="">&nbsp;마지막</a>
 		</c:if>
 	</div>
 </body>

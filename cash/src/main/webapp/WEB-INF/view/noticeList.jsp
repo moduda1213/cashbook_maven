@@ -25,9 +25,9 @@
 				<c:forEach var="n" items="${noticeListByPage}">
 					<tr>
 						<td>${n.noticeId}</td>
-						<td><a href="/admin/noticeOne?noticeId=${n.noticeId}">${n.noticeTitle}</a></td>
+						<td><a href="/admin/noticeOne/${n.noticeId}">${n.noticeTitle}</a></td>
 						<td>${n.noticeDate}</td>
-						<td><a href="/admin/updateNotice?noticeId=${n.noticeId}">수정</a></td>
+						<td><a href="/admin/updateNotice/${n.noticeId}">수정</a></td>
 						<td><a href="/admin/removeNotice?noticeId=${n.noticeId}">삭제</a></td>
 					</tr>
 				</c:forEach>
@@ -35,14 +35,14 @@
 		</table>
 	</div>
 	<c:if test="${currentPage == 1 && lastPage != 1}">
-		<a href="/admin/noticeList?currentPage=${currentPage+1}">다음</a>
+		<a href="/admin/noticeList/${currentPage+1}">다음</a>
 	</c:if>
 	<c:if test="${currentPage == lastPage && lastPage != 1}">
-		<a href="/admin/noticeList?currentPage=${currentPage-1}">이전</a>
+		<a href="/admin/noticeList/${currentPage-1}">이전</a>
 	</c:if>
 	<c:if test="${currentPage > 1 && currentPage < lastPage}">
-		<a href="/admin/noticeList?currentPage=${currentPage-1}">이전</a>
-		<a href="/admin/noticeList?currentPage=${currentPage+1}">다음</a>
+		<a href="/admin/noticeList/${currentPage-1}">이전</a>
+		<a href="/admin/noticeList/${currentPage+1}">다음</a>
 	</c:if>
 	
 </body>

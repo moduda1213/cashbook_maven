@@ -11,7 +11,7 @@
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>가계부</h1>
 	<!-- 공지 -->
-	<div id="aloneText">공지사항 <a id="aloneLink" href="/admin/noticeList">more</a></div>
+	<div id="aloneText">공지사항 <a id="aloneLink" href="/admin/noticeList/1">more</a></div>
 	<div>
 		<table class="noticeTable">
 			<thead>

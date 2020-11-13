@@ -9,8 +9,7 @@
 	$(document).ready(function(){
 		$('#id').focus();
 		
-		$('#id').blur(function(){//마우스가 벗아나면 생기는 이벤트	
-				
+		$('#id').blur(function(){//마우스가 벗아나면 생기는 이벤트
 				$.ajax({
 						url:'/admin/idCheck',
 						type:'post',
@@ -30,6 +29,9 @@
 							}
 						}
 					});
+				$.ajax({
+						
+					})
 			})
 	})
 </script>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,9 +19,9 @@ public class NoticeController {
 	@Autowired NoticeService noticeService;
 	
 	//공지 사항 더 보기
-	@GetMapping("/admin/noticeList")
+	@GetMapping("/admin/noticeList/{currentPage}")
 	public String noticeList(Model model,
-					@RequestParam(value ="currentPage" ,defaultValue = "1") int currentPage) {
+					@PathVariable(name="currentPage" ,required = true) int currentPage) {
 		int rowPerPage = 5;
 		//total lastPage = (total / rowPerPage)+1
 		int total = noticeService.totalList();
@@ -40,9 +41,9 @@ public class NoticeController {
 	}
 	
 	//공지 상세보기
-	@GetMapping("/admin/noticeOne")
+	@GetMapping("/admin/noticeOne/{noticeId}")
 	public String noticeOne(Model model,
-						@RequestParam(value="noticeId") int noticeId) {
+						@PathVariable(name="noticeId") int noticeId) {
 		//noticeService 호출
 		Notice noticeOne = noticeService.getNoticeOne(noticeId);
 		model.addAttribute("noticeOne",noticeOne);
@@ -70,8 +71,8 @@ public class NoticeController {
 		return "redirect:/admin/noticeList";
 	}
 	//공지 수정 폼
-	@GetMapping("/admin/updateNotice")
-	public String updateNotice(Model model, @RequestParam(value="noticeId") int noticeId) {
+	@GetMapping("/admin/updateNotice/{noticeId}")
+	public String updateNotice(Model model, @PathVariable(name="noticeId") int noticeId) {
 		Notice updateNoticeForm = noticeService.getNoticeOne(noticeId);
 		model.addAttribute("updateNoticeForm",updateNoticeForm);
 		return "updateNotice";

@@ -16,6 +16,11 @@ import kr.co.gdu.cash.vo.Cashbook;
 public class CashbookService {
 	@Autowired private CashbookMapper cashBookMapper;
 	
+	//캐쉬북 전체 리스트 총 양
+	public int getTotalCashbookList() {
+		return cashBookMapper.totalCashbookList();
+	}
+	
 	//캐쉬북 전체 리스트
 	public List<Cashbook> getCashbookListAll(){
 		return cashBookMapper.selectCashbookListAll();

@@ -21,9 +21,9 @@
 	</div>
 	
 	<h3>
-		<a href="/admin/cashbookByMonth?currentYear=${currentYear}&currentMonth=${currentMonth-1}">[이전달]</a>
+		<a href="/admin/cashbookByMonth/pre/${currentYear}/${currentMonth}">[이전달]</a>
 		${currentYear}년 ${currentMonth} 월
-		<a href="/admin/cashbookByMonth?currentYear=${currentYear}&currentMonth=${currentMonth+1}">[다음달]</a>
+		<a href="/admin/cashbookByMonth/next/${currentYear}/${currentMonth}">[다음달]</a>
 	</h3>
 	
 	<div>

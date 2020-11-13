@@ -30,16 +30,25 @@ public class CashbookController {
 	public String cashbookList(Model model,
 							@PathVariable(name="currentPage", required = true) int currentPage) {
 		int rowPerPage = 20;
+		int total = cashbookService.getTotalCashbookList();
+		int lastPage = 0;
+		if(total%rowPerPage != 0) {
+			lastPage = (total/rowPerPage)+1;
+		}else {
+			lastPage = total/rowPerPage;
+		}
 		List<Cashbook> cashbookList = cashbookService.getCashbookListByPage(currentPage, rowPerPage);
 		model.addAttribute("cashbookList", cashbookList);
+		model.addAttribute("lastPage",lastPage);
+		model.addAttribute("total",total);
 		return "cashbookList";
 	}
 	
 	
 	//가계부 상세보기
-	@GetMapping("/admin/cashbookOne")
+	@GetMapping("/admin/cashbookOne/{cashbookId}")
 	public String cashbookOne(Model model,
-			@RequestParam(name="cashbookId",required = true) int cashbookId) {
+			@PathVariable(name="cashbookId",required = true) int cashbookId) {
 		Cashbook cashOne = cashbookService.getCashbookOne(cashbookId);
 		model.addAttribute("cashOne",cashOne);
 		return "cashbookOne";
@@ -52,13 +61,16 @@ public class CashbookController {
 			@RequestParam(name = "currentMonth", required = true) int currentMonth,
 			@RequestParam(name = "currentDay", required = true) int currentDay) {
 		cashbookService.updateCashbook(cashbook);
-		return "redirect:/admin/cashbookByDay?currentYear="+currentYear+"&currentMonth="+currentMonth+"&currentDay="+currentDay;
+		return "redirect:/admin/cashbookByDay/"+cashbook.getCashbookId()+"/"+currentYear+"/"+currentMonth+"/"+currentDay;
 	}
 	
 	//가계부 목록 수정 폼
-	@GetMapping("/admin/updateCashbook")
+	@GetMapping("/admin/updateCashbook/{cashbookId}/{currentYear}/{currentMonth}/{currentDay}")
 	public String updateCashbook(Model model,
-			@RequestParam(name="cashbookId",required = true) int cashbookId) {
+			@PathVariable(name="cashbookId",required = true) int cashbookId,
+			@PathVariable(name="currentYear",required = true) int currentYear,
+			@PathVariable(name="currentMonth",required = true) int currentMonth,
+			@PathVariable(name="currentDay",required = true) int currentDay) {
 		Cashbook cashOne = cashbookService.getCashbookOne(cashbookId);
 		List<Category> categoryList = categoryService.getCategoryList();
 		model.addAttribute("categoryList", categoryList);
@@ -84,11 +96,11 @@ public class CashbookController {
 		return "redirect:/admin/cashbookByMonth"; 
 	}
 	
-	@GetMapping("/admin/addCashbook")
+	@GetMapping("/admin/addCashbook/{currentYear}/{currentMonth}/{currentDay}")
 	public String addCashbook(Model model,
-			@RequestParam(name = "currentYear", required = true) int currentYear,
-			@RequestParam(name = "currentMonth", required = true) int currentMonth,
-			@RequestParam(name = "currentDay", required = true) int currentDay) {
+			@PathVariable(name = "currentYear", required = true) int currentYear,
+			@PathVariable(name = "currentMonth", required = true) int currentMonth,
+			@PathVariable(name = "currentDay", required = true) int currentDay) {
 		List<Category> categoryList = categoryService.getCategoryList();
 		model.addAttribute("categoryList", categoryList);
 		return "addCashbook"; // forward
@@ -123,11 +135,11 @@ public class CashbookController {
 	}
 	
 	// 매 일 마다 보여지는 수입 , 지출
-	@GetMapping(value="/admin/cashbookByMonth")
+	@GetMapping(value="/admin/cashbookByMonth/{target}/{currentYear}/{currentMonth}")
 	public String cashbookByMonth(Model model,
-			@RequestParam(name ="target", defaultValue = "") String target,
-			@RequestParam(name = "currentYear", defaultValue = "-1") int currentYear,
-			@RequestParam(name = "currentMonth", defaultValue = "-1") int currentMonth) { 
+			@PathVariable(name ="target") String target,
+			@PathVariable(name = "currentYear") int currentYear,
+			@PathVariable(name = "currentMonth") int currentMonth) { 
 		// 1-1. 요청분석
 		Calendar currentDay = Calendar.getInstance(); // 2020년 11월 2일
 		// currentYear 넘어오고, currentMonth도 넘어면
