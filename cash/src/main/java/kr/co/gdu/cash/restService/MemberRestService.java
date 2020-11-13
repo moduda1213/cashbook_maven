@@ -11,8 +11,12 @@ import kr.co.gdu.cash.restMapper.MemberRestMapper;
 public class MemberRestService {
 	@Autowired private MemberRestMapper memberRestMapper;
 	
-	public String checkMemberId(String id) {//회원 추가할 때 db에 아이디가 있는지 없는지 체크
-		
+	//회원 추가할 때 db에 아이디가 있는지 없는지 체크
+	public String checkMemberId(String id) {
 		return memberRestMapper.selectMemberId(id);
+	}
+	//회원 추가할 때 db에 패스워드가 있는지 없는지 체크
+	public String checkMemberPw(String pw) {
+		return memberRestMapper.selectMemberPw(pw);
 	}
 }

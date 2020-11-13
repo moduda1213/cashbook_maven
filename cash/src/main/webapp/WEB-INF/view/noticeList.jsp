@@ -34,15 +34,23 @@
 			</tbody>
 		</table>
 	</div>
-	<c:if test="${currentPage == 1 && lastPage != 1}">
+	<c:if test="${currentPage == 1}">
+		<a href="">처음</a>
+		<a href="">이전</a>
 		<a href="/admin/noticeList/${currentPage+1}">다음</a>
+		<a href="/admin/noticeList/${lastPage}">마지막</a>
 	</c:if>
-	<c:if test="${currentPage == lastPage && lastPage != 1}">
+	<c:if test="${currentPage == lastPage}">
+		<a href="/admin/noticeList/1">처음</a>
 		<a href="/admin/noticeList/${currentPage-1}">이전</a>
+		<a href="">다음</a>
+		<a href="">마지막</a>
 	</c:if>
 	<c:if test="${currentPage > 1 && currentPage < lastPage}">
+		<a href="/admin/noticeList/1">처음</a>
 		<a href="/admin/noticeList/${currentPage-1}">이전</a>
 		<a href="/admin/noticeList/${currentPage+1}">다음</a>
+		<a href="/admin/noticeList/${lastPage}">마지막</a>
 	</c:if>
 	
 </body>

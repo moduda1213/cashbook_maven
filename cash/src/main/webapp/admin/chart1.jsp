@@ -41,7 +41,7 @@ $(document).ready(function(){
 						data:{
 							labels:['1','2','3','4','5','6','7','8','9','10','11','12'],
 							datasets:[{
-								label:'2010년 월별 지출',
+								label:'2019년 월별 지출',
 								backgroundColor: [
 					                'rgba(255, 99, 132, 0.2)',
 					                'rgba(54, 162, 235, 0.2)',
