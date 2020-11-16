@@ -7,7 +7,7 @@
 <title>ListOne</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>noticeList</h1>
 	<div>
 		<table border="1">
@@ -28,6 +28,7 @@
 					<td>${noticeOne.noticeDate}</td>
 				</tr>
 		</table>
+		<a href="${pageContext.request.contextPath}/admin/noticeList">뒤로</a>
 	</div>
 </body>
 </html>

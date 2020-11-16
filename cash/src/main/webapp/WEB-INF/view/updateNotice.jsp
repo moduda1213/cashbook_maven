@@ -7,10 +7,10 @@
 <title>updateNotice</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>noticeList</h1>
 	<div>
-		<form method="post" action="/admin/updateNotice?noticeId=${updateNoticeForm.noticeId }">
+		<form method="post" action="${pageContext.request.contextPath}/admin/updateNotice?noticeId=${updateNoticeForm.noticeId }">
 			<table border="1">
 				<tr>
 					<th>notice_title</th>

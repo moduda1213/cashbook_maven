@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/accountStyle.css"/>
 <div class="menu">
 	<a href="/">index</a>
-	<a href="/admin/cashbookByMonth/now/-1/-1">cashbook</a>
-	<a href="/admin/cashbookList/1">cashbookList</a>
-	<a href="/admin/logout">logout</a>
-	<a href="/admin/chart1.jsp">chart</a>
-	<a href="/admin/insertMember">사용자 추가</a>
+	<a href="${pageContext.request.contextPath}/admin/cashbookByMonth/now/-1/-1">cashbook</a>
+	<a href="${pageContext.request.contextPath}/admin/cashbookList/1">cashbookList</a>
+	<a href="${pageContext.request.contextPath}/admin/logout">logout</a>
+	<a href="${pageContext.request.contextPath}/admin/chart1.jsp">chart</a>
+	<a href="${pageContext.request.contextPath}/admin/insertMember">사용자 추가</a>
 </div>

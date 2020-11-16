@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>noticeList</h1>
 	<div>
-		<form method="post" action="/admin/addNotice">
+		<form method="post" action="${pageContext.request.contextPath}/admin/addNotice">
 			<table border="1">
 				<tr>
 					<th>notice_title</th>

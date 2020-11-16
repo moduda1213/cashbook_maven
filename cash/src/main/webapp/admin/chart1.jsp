@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>chart1</title>
+<title>2020년 월별 지출</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
 $(document).ready(function(){
 	$.ajax({
-			url:"/admin/chart1",
+			url:"${pageContext.request.contextPath}/admin/chart1",
 			type:"get",	
 			success:function(data){
 					console.log(data.january);
@@ -41,7 +41,7 @@ $(document).ready(function(){
 						data:{
 							labels:['1','2','3','4','5','6','7','8','9','10','11','12'],
 							datasets:[{
-								label:'2019년 월별 지출',
+								label:'2020년 월별 지출',
 								backgroundColor: [
 					                'rgba(255, 99, 132, 0.2)',
 					                'rgba(54, 162, 235, 0.2)',
@@ -85,9 +85,9 @@ $(document).ready(function(){
 </head>
 <body>
 	<div>
-		<jsp:include page ="/WEB-INF/view/inc/menu.jsp"></jsp:include>
-		<jsp:include page ="/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
-		<h1>chart1</h1>
+		<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
+		<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
+		<h1>2020년 월별 지출</h1>
 		<!-- chart -->
 		<div>
 			<canvas id="myChart"></canvas>

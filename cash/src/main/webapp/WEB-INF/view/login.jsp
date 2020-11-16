@@ -10,12 +10,12 @@
 </head>
 <body>
 	<div class="login">
-		<form action="/login" method="post">
+		<form action="${pageContext.request.contextPath}/login" method="post">
 			<div>
-				ID : <input type="text" name="id">
+				ID : <input type="text" name="id" value="goodee">
 			</div>
 			<div>
-				PW : <input type="password" name="pw">
+				PW : <input type="password" name="pw" value="1234">
 			</div>
 			<div>
 				<button type="submit">로그인</button>

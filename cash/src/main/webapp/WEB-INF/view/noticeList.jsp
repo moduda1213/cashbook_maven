@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>noticeList</h1>
-	<a href="/admin/addNotice">공지 추가</a>
+	<a href="${pageContext.request.contextPath}/admin/addNotice">공지 추가</a>
 	<div>
 		<table border="1">
 			<thead>
@@ -25,10 +25,10 @@
 				<c:forEach var="n" items="${noticeListByPage}">
 					<tr>
 						<td>${n.noticeId}</td>
-						<td><a href="/admin/noticeOne/${n.noticeId}">${n.noticeTitle}</a></td>
+						<td><a href="${pageContext.request.contextPath}/admin/noticeOne/${n.noticeId}">${n.noticeTitle}</a></td>
 						<td>${n.noticeDate}</td>
-						<td><a href="/admin/updateNotice/${n.noticeId}">수정</a></td>
-						<td><a href="/admin/removeNotice?noticeId=${n.noticeId}">삭제</a></td>
+						<td><a href="${pageContext.request.contextPath}/admin/updateNotice/${n.noticeId}">수정</a></td>
+						<td><a href="${pageContext.request.contextPath}/admin/removeNotice?noticeId=${n.noticeId}">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -37,20 +37,20 @@
 	<c:if test="${currentPage == 1}">
 		<a href="">처음</a>
 		<a href="">이전</a>
-		<a href="/admin/noticeList/${currentPage+1}">다음</a>
-		<a href="/admin/noticeList/${lastPage}">마지막</a>
+		<a href="${pageContext.request.contextPath}/admin/noticeList/${currentPage+1}">다음</a>
+		<a href="${pageContext.request.contextPath}/admin/noticeList/${lastPage}">마지막</a>
 	</c:if>
 	<c:if test="${currentPage == lastPage}">
-		<a href="/admin/noticeList/1">처음</a>
-		<a href="/admin/noticeList/${currentPage-1}">이전</a>
+		<a href="${pageContext.request.contextPath}/admin/noticeList/1">처음</a>
+		<a href="${pageContext.request.contextPath}/admin/noticeList/${currentPage-1}">이전</a>
 		<a href="">다음</a>
 		<a href="">마지막</a>
 	</c:if>
 	<c:if test="${currentPage > 1 && currentPage < lastPage}">
-		<a href="/admin/noticeList/1">처음</a>
-		<a href="/admin/noticeList/${currentPage-1}">이전</a>
-		<a href="/admin/noticeList/${currentPage+1}">다음</a>
-		<a href="/admin/noticeList/${lastPage}">마지막</a>
+		<a href="${pageContext.request.contextPath}/admin/noticeList/1">처음</a>
+		<a href="${pageContext.request.contextPath}/admin/noticeList/${currentPage-1}">이전</a>
+		<a href="${pageContext.request.contextPath}/admin/noticeList/${currentPage+1}">다음</a>
+		<a href="${pageContext.request.contextPath}/admin/noticeList/${lastPage}">마지막</a>
 	</c:if>
 	
 </body>

@@ -10,7 +10,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>cashbookList</h1>
 	<!-- 다이어리 -->
 	<div>
@@ -21,9 +21,9 @@
 	</div>
 	
 	<h3>
-		<a href="/admin/cashbookByMonth/pre/${currentYear}/${currentMonth}">[이전달]</a>
+		<a href="${pageContext.request.contextPath}/admin/cashbookByMonth/pre/${currentYear}/${currentMonth}">[이전달]</a>
 		${currentYear}년 ${currentMonth} 월
-		<a href="/admin/cashbookByMonth/next/${currentYear}/${currentMonth}">[다음달]</a>
+		<a href="${pageContext.request.contextPath}/admin/cashbookByMonth/next/${currentYear}/${currentMonth}">[다음달]</a>
 	</h3>
 	
 	<div>
@@ -48,7 +48,7 @@
 						<c:if test="${i-(firstDayOfWeek-1) > 0}">
 							<td>
 								<div><!-- 날짜 -->
-									<a href="/admin/cashbookByDay/now/${currentYear}/${currentMonth}/${i-(firstDayOfWeek-1)}">
+									<a href="${pageContext.request.contextPath}/admin/cashbookByDay/now/${currentYear}/${currentMonth}/${i-(firstDayOfWeek-1)}">
 										${i-(firstDayOfWeek-1)}
 									</a>
 								</div>

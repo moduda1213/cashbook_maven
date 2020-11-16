@@ -7,9 +7,9 @@
 <title>addCashbook</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>addCashbook</h1>
-	<form method="post" action="/admin/updateCashbook?cashbookId=${cashOne.cashbookId }&currentYear=${currentYear}&currentMonth=${currentMonth}&currentDay=${currentDay}">
+	<form method="post" action="${pageContext.request.contextPath}/admin/updateCashbook?cashbookId=${cashOne.cashbookId }&currentYear=${currentYear}&currentMonth=${currentMonth}&currentDay=${currentDay}">
 		<table border="1">
 			<tr>
 				<td>cashbook_date</td>

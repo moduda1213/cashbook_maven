@@ -1,5 +1,6 @@
 package kr.co.gdu.cash.restController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,15 @@ public class CashStatsRestController {
 	@GetMapping("/admin/chart1")
 	public Map<String, Object> totalOfMonthByYear() {
 		Map<String, Object> map = cashStatsService.getTotalOfMonthByYear();
+		return map; 
+	}
+	
+	@GetMapping("/admin/chart2")
+	public Map<String, Object> totalOfMonthByThirdYear() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("currentYear",cashStatsService.getTotalOfMonthByYear());
+		map.put("lastYear", cashStatsService.getTotalOfMonthByYear());
+		map.put("beforeLastYear",cashStatsService.getTotalOfMonthByYear());
 		return map; 
 	}
 }

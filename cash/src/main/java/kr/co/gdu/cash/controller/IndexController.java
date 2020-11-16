@@ -15,7 +15,7 @@ public class IndexController {
 	
 	@Autowired private NoticeService noticeService;
 	
-	@GetMapping(value="/admin/index")
+	@GetMapping("/admin/index")
 	public String index(Model model) { 
 		Map<String, Object> map = noticeService.getNoticeAndInOutList();
 		model.addAttribute("noticeList", map.get("noticeList"));

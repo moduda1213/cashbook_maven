@@ -13,8 +13,17 @@ import kr.co.gdu.cash.restMapper.CashStatsMapper;
 public class CashStatsService {
 	@Autowired CashStatsMapper cashStatsMapper;
 	
+	//2020년 월별 지출
 	public Map<String, Object> getTotalOfMonthByYear () {
 		return cashStatsMapper.selectTotalOfMonthByYear();
+	}
+	//2019년 월별 지출
+		public Map<String, Object> getTotalOfMonthByLastYear () {
+			return cashStatsMapper.selectTotalOfMonthByLastYear();
+	}
+	//2018년 월별 지출
+	public Map<String, Object> getTotalOfMonthByBeforeLastYear () {
+		return cashStatsMapper.selectTotalOfMonthByBeforeLastYear();
 	}
 	
 	public Map<String, Object> getTotalOutAndInByYear(int year) {

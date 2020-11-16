@@ -12,7 +12,7 @@
 		let pwSuccess = false; // pw 중복 체크 => 조건에 충족했다면 true
 		$('#ckIdBtn').click(function(){//마우스가 벗아나면 생기는 이벤트
 				$.ajax({
-					url:'/admin/idCheck',
+					url:'${pageContext.request.contextPath}/admin/idCheck',
 					type:'post',
 					data:{id:$('#id').val()},
 					success:function(data){
@@ -65,10 +65,10 @@
 </script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>사용자 추가</h1>
 	
-	<form method="post" action="/admin/insertMember">
+	<form method="post" action="${pageContext.request.contextPath}/admin/insertMember">
 		<div>
 			ID:<input type="text" id="id" name="id">
 			<button type="button" id="ckIdBtn">중복확인</button>
