@@ -15,8 +15,8 @@ $(document).ready(function(){
 			success:function(data){
 					console.log(data.january);
 					console.log(data);
-					let list = data.january;
-					console.log(list);
+					//let list = data.january;
+					//console.log(list);
 					let html = `
 							<tr>
 								<td>\${data.january}</td> // \n 줄바꿈 , \\n : \n으로 출력 => 특별한 문자를 표현할 때 \를 사용한다
@@ -35,7 +35,7 @@ $(document).ready(function(){
 					`;	
 					$('#tableboby').html(html);
 					
-					var ctx = document.getElementById('myChart');//메서드는 주어진 문자열과 일치하는 id 속성을 가진 요소를 찾고, 이를 나타내는 Element 객체를 반환합니다
+					var ctx = document.getElementById('barChart');//메서드는 주어진 문자열과 일치하는 id 속성을 가진 요소를 찾고, 이를 나타내는 Element 객체를 반환합니다
 					var chart = new Chart(ctx , {
 						type:'bar', // chart 종류
 						data:{
@@ -90,7 +90,7 @@ $(document).ready(function(){
 		<h1>2020년 월별 지출</h1>
 		<!-- chart -->
 		<div>
-			<canvas id="myChart"></canvas>
+			<canvas id="barChart"></canvas>
 		</div>
 		<!-- table -->
 		<div> 

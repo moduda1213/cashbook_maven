@@ -30,8 +30,8 @@ public class CashStatsRestController {
 	public Map<String, Object> totalOfMonthByThirdYear() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("currentYear",cashStatsService.getTotalOfMonthByYear());
-		map.put("lastYear", cashStatsService.getTotalOfMonthByYear());
-		map.put("beforeLastYear",cashStatsService.getTotalOfMonthByYear());
+		map.put("lastYear", cashStatsService.getTotalOfMonthByLastYear());
+		map.put("beforeLastYear",cashStatsService.getTotalOfMonthByBeforeLastYear());
 		return map; 
 	}
 }

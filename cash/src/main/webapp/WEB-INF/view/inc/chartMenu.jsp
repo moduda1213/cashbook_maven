@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div> <!-- 리스트에서 왼쪽에 배치 -->
-	<a href="${pageContext.request.contextPath}/admin/chart1.jsp">2020년 월별 지출</a>
-	<a href="${pageContext.request.contextPath}/admin/chart2.jsp">2020년 월별 수입</a>
-	<a href="${pageContext.request.contextPath}/admin/chart3.jsp">chart3</a>
+	<a href="${pageContext.request.contextPath}/admin/chart1.jsp">올해 월별 지출</a>
+	<a href="${pageContext.request.contextPath}/admin/chart2.jsp">18년~올해 월별 지출</a>
+	<a href="${pageContext.request.contextPath}/admin/chart3.jsp">카테고리 별 지출</a>
 	<a href="${pageContext.request.contextPath}/admin/chart4.jsp">chart4</a>
 	<a href="${pageContext.request.contextPath}/admin/chart5.jsp">chart5</a>
 	<a href="${pageContext.request.contextPath}/admin/chart6.jsp">chart6</a>
