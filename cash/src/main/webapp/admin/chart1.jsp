@@ -90,7 +90,7 @@ $(document).ready(function(){
 		<h1>2020년 월별 지출</h1>
 		<!-- chart -->
 		<div>
-			<canvas id="barChart"></canvas>
+			<canvas id="barChart" width="5" height="1"></canvas>
 		</div>
 		<!-- table -->
 		<div> 

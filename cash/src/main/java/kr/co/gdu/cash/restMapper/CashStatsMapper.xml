@@ -11,7 +11,8 @@
 		WHERE YEAR(cashbook_date) = #{year}
 		GROUP BY Year(cashbook_date)
 	</select>
-
+	
+	<!-- 2020년 월별 지출 -->
 	<select id="selectTotalOfMonthByYear" resultType="java.util.Map">
 		SELECT
 			YEAR(cashbook_date) AS year,
@@ -31,6 +32,7 @@
 		WHERE YEAR(cashbook_date) = 2020 AND cashbook_kind = "지출"
 		GROUP BY Year(cashbook_date)
 	</select>
+	<!-- 2019년 월별 지출 -->
 	<select id="selectTotalOfMonthByLastYear" resultType="java.util.Map">
 		SELECT
 			YEAR(cashbook_date) AS year,
@@ -50,6 +52,7 @@
 		WHERE YEAR(cashbook_date) = 2019 AND cashbook_kind = "지출"
 		GROUP BY Year(cashbook_date)
 	</select>
+	<!-- 2018년 월별 지출 -->
 	<select id="selectTotalOfMonthByBeforeLastYear" resultType="java.util.Map">
 		SELECT
 			YEAR(cashbook_date) AS year,
@@ -69,4 +72,59 @@
 		WHERE YEAR(cashbook_date) = 2018 AND cashbook_kind = "지출"
 		GROUP BY Year(cashbook_date)
 	</select>
+	<!-- 최근 3개월간 카테고리 별 지출 -->
+	<select id="selectCategoryForThreeMonth" resultType="java.util.Map">
+		SELECT sum(case when category_name='식비' AND MONTH(cashbook_date) = DATE_FORMAT(NOW(),'%m') 
+						then cashbook_price END) currentFood,
+				sum(case when category_name='식비' AND MONTH(cashbook_date) = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%m') 
+						then cashbook_price END) lastFood,
+				sum(case when category_name='식비' AND MONTH(cashbook_date) = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 MONTH), '%m') 
+						then cashbook_price END) beforeLastFood,
+				sum(case when category_name='생활' AND MONTH(cashbook_date) = DATE_FORMAT(NOW(),'%m') 
+						then cashbook_price END) currentLife,
+				sum(case when category_name='생활' AND MONTH(cashbook_date) = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%m') 
+						then cashbook_price END) lastLife,
+				sum(case when category_name='생활' AND MONTH(cashbook_date) = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 MONTH), '%m') 
+						then cashbook_price END) beforeLastLife,
+				sum(case when category_name='관광' AND MONTH(cashbook_date) = DATE_FORMAT(NOW(),'%m') 
+						then cashbook_price END) currentTrip,
+				sum(case when category_name='관광' AND MONTH(cashbook_date) = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%m') 
+						then cashbook_price END) lastTrip,
+				sum(case when category_name='관광' AND MONTH(cashbook_date) = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 MONTH), '%m') 
+						then cashbook_price END) beforeLastTrip,
+				sum(case when category_name='의료' AND MONTH(cashbook_date) = DATE_FORMAT(NOW(),'%m') 
+						then cashbook_price END) currentMedical,
+				sum(case when category_name='의료' AND MONTH(cashbook_date) = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%m') 
+						then cashbook_price END) lastMedical,
+				sum(case when category_name='의료' AND MONTH(cashbook_date) = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 MONTH), '%m')
+						then cashbook_price END) beforeLastMedical,
+				sum(case when category_name='통신' AND MONTH(cashbook_date) = DATE_FORMAT(NOW(),'%m') 
+						then cashbook_price END) currentCommu,
+				sum(case when category_name='통신' AND MONTH(cashbook_date) = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%m')  
+						then cashbook_price END) lastCommu,
+				sum(case when category_name='통신' AND MONTH(cashbook_date) = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 MONTH), '%m')  
+						then cashbook_price END) beforeLastCommu,
+				DATE_FORMAT(NOW(),'%m') currentMonth,
+				DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%m') lastMonth,
+				DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 MONTH), '%m') beforeLastMonth
+		FROM cashbook
+		WHERE YEAR(cashbook_date) = 2020
+	</select>
+	<!-- 18년~올해 총 지출 -->
+	<select id="selectTotalofYearForThreeYear" resultType="java.util.Map">
+		SELECT sum(case when YEAR(cashbook_date)=2018 then cashbook_price END) beforeLastExpense,
+				sum(case when YEAR(cashbook_date)=2019 then cashbook_price END) lastYearExpense,
+				sum(case when YEAR(cashbook_date)=2020 then cashbook_price END) currentYearExpense,
+				DATE_FORMAT(NOW(),'%y') currentYear,
+				DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR), '%y') lastYear,
+				DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 YEAR), '%y') beforeLastYear
+		FROM cashbook
+		WHERE cashbook_kind='지출'
+	</select>
 </mapper>
+
+
+
+
+
+

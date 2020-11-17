@@ -11,4 +11,6 @@ public interface CashStatsMapper {
 	public Map<String, Object> selectTotalOfMonthByLastYear(); //2019년도의 매 월 지출
 	public Map<String, Object> selectTotalOfMonthByBeforeLastYear();//2018년도의 매 월 지출
 	public Map<String, Object> selectTotalOutAndInByYear(int year); // 해당 년도의 지출,수입
+	public Map<String, Object> selectCategoryForThreeMonth();//최근 3개월간 카테고리별 지출
+	public Map<String, Object> selectTotalofYearForThreeYear();//18년~올해 총 지출
 }

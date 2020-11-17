@@ -156,7 +156,7 @@
 	<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
 	<h1>2018-2020 월별 지출 차트</h1>
 	<div>
-		<canvas id="lineChart"></canvas>
+		<canvas id="lineChart" width="5" height="1"></canvas>
 	</div>
 	<div> 
 			<table>

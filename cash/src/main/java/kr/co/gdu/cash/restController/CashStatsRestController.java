@@ -19,13 +19,13 @@ public class CashStatsRestController {
 	public Map<String, Object> totalOutAndInByYear(@PathVariable(name = "year") int year) {
 		return cashStatsService.getTotalOutAndInByYear(year);
 	}
-	
+	//올해 지출 내역
 	@GetMapping("/admin/chart1")
 	public Map<String, Object> totalOfMonthByYear() {
 		Map<String, Object> map = cashStatsService.getTotalOfMonthByYear();
 		return map; 
 	}
-	
+	//최근 3년간 매월 지출 내역
 	@GetMapping("/admin/chart2")
 	public Map<String, Object> totalOfMonthByThirdYear() {
 		Map<String, Object> map = new HashMap<>();
@@ -33,5 +33,17 @@ public class CashStatsRestController {
 		map.put("lastYear", cashStatsService.getTotalOfMonthByLastYear());
 		map.put("beforeLastYear",cashStatsService.getTotalOfMonthByBeforeLastYear());
 		return map; 
+	}
+	//최근 3개월간 카테고리별 지출 내역
+	@GetMapping("/admin/chart3")
+	public Map<String,Object> selectCategoryForThreeMonth(){
+		Map<String,Object> map = cashStatsService.getCategoryForThreeMonth();
+		return map;
+	}
+	//18년~올해 총 지출
+	@GetMapping("/admin/chart4")
+	public Map<String,Object> selectTotalofYearForThreeYear(){
+		Map<String,Object> map = cashStatsService.getTotalofYearForThreeYear();
+		return map;
 	}
 }
