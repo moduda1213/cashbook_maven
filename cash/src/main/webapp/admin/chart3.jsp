@@ -10,7 +10,7 @@
 <script>
 	$(document).ready(function(){
 			$.ajax({
-					url:'/admin/chart3',
+					url:'${pageContext.request.contextPath}/admin/chart3',
 					type:'get',
 					success:function(data){
 							let html=`
@@ -20,7 +20,7 @@
 									<td>\${data.beforeLastLife}</td>
 									<td>\${data.beforeLastFood}</td>
 									<td>\${data.beforeLastMedical}</td>
-									<td>\${data.beforeLastCommu}</td>
+									<td>\${data.beforeLastPhone}</td>
 								</tr>
 								<tr>//10월
 									<td>\${data.lastMonth}월</td>
@@ -28,7 +28,7 @@
 									<td>\${data.lastLife}</td>
 									<td>\${data.lastFood}</td>
 									<td>\${data.lastMedical}</td>
-									<td>\${data.lastCommu}</td>
+									<td>\${data.lastPhone}</td>
 								</tr>
 								<tr>//11월
 									<td>\${data.currentMonth}월</td>
@@ -36,7 +36,7 @@
 									<td>\${data.currentLife}</td>
 									<td>\${data.currentFood}</td>
 									<td>\${data.currentMedical}</td>
-									<td>\${data.currentCommu}</td>
+									<td>\${data.currentPhone}</td>
 								</tr>
 							`;
 							$("#tableBody").html(html);
@@ -56,7 +56,7 @@
 												data.beforeLastLife,
 												data.beforeLastFood,
 												data.beforeLastMedical,
-												data.beforeLastCommu
+												data.beforeLastPhone
 												]
 											},{
 											label:data.lastMonth+'월',
@@ -69,7 +69,7 @@
 												data.lastLife,
 												data.lastFood,
 												data.lastMedical,
-												data.lastCommu
+												data.lastPhone
 												]
 											},{
 											label:data.currentMonth+'월',
@@ -82,7 +82,7 @@
 												data.currentLife,
 												data.currentFood,
 												data.currentMedical,
-												data.currentCommu
+												data.currentPhone
 												]
 											}]
 										}
@@ -95,9 +95,9 @@
 <body>
 	<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
-	<h1>매년 카테고리별 지출</h1>
+	<h1>3개월 간 카테고리별 지출</h1>
 	<div>
-		<canvas id="radarChart" width="5"></canvas>
+		<canvas id="radarChart" width="3"></canvas>
 	</div>
 	<div>
 		<table>

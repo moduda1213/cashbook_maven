@@ -10,7 +10,7 @@
 <script>
 	$(document).ready(function(){
 		$.ajax({
-			url:"/admin/chart4",
+			url:"${pageContext.request.contextPath}/admin/chart4",
 			type:'get',
 			success:function(data){
 				let html=`
@@ -66,7 +66,7 @@
 	<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
 	<h1>18년~올해 총 지출</h1>
 	<div>
-		<canvas id="pieChart" width='5'></canvas>
+		<canvas id="pieChart" width='3'></canvas>
 	</div>
 	<div>
 		<table>
