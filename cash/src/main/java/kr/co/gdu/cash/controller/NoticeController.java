@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.gdu.cash.service.NoticeService;
 import kr.co.gdu.cash.vo.Notice;
+import kr.co.gdu.cash.vo.NoticeForm;
 
 @Controller
 public class NoticeController {
@@ -58,17 +59,26 @@ public class NoticeController {
 	
 	//공지 입력 액션
 	@PostMapping("/admin/addNotice")
-	public String addNotice(Notice notice) {
-		noticeService.addNotice(notice);
+	public String addNotice(NoticeForm noticeForm) {
+		noticeService.addNotice(noticeForm);
 		
-		return "redirect:/admin/noticeList";
+		return "redirect:/admin/noticeList/1";
+	}
+	
+	// 공지 업로드된 파일 하나 삭제(수정폼에서)
+	@GetMapping("/admin/deleteFileOne")
+	public String deleteFileOne(@RequestParam(value="noticefileId") int noticefileId,
+								@RequestParam(value="noticefileName") String noticefileName,
+								@RequestParam(value="noticeId") int noticeId) {
+		noticeService.removeUploadFileOne(noticefileId, noticefileName);
+		return "redirect:/admin/updateNotice/"+noticeId;
 	}
 	
 	//공지 삭제
 	@GetMapping("/admin/removeNotice")
 	public String removeNotice(@RequestParam(value="noticeId") int noticeId) {
 		noticeService.deleteNotice(noticeId);
-		return "redirect:/admin/noticeList";
+		return "redirect:/admin/noticeList/1";
 	}
 	//공지 수정 폼
 	@GetMapping("/admin/updateNotice/{noticeId}")
@@ -79,9 +89,10 @@ public class NoticeController {
 	}
 	//공지 수정
 	@PostMapping("/admin/updateNotice")
-	public String updateNotice(Notice notice) {
-		noticeService.updateNotice(notice);
+	public String updateNotice(NoticeForm noticeForm,
+							@RequestParam(value="noticeId") int noticeId) {
+		noticeService.updateNotice(noticeForm,noticeId);
 		
-		return "redirect:/admin/noticeOne?noticeId="+notice.getNoticeId();
+		return "redirect:/admin/noticeOne/"+noticeId;
 	}
 }

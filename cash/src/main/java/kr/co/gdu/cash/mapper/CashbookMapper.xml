@@ -116,6 +116,8 @@
 			,SUM((case when cashbook_kind = '수입' then cashbook_price ELSE 0 END)
 				-(case when cashbook_kind = '지출' then cashbook_price ELSE 0 END)) AS "합계"
 		FROM cashbook
+		WHERE YEAR(cashbook_date)=DATE_FORMAT(NOW(),'%Y') AND
+				MONTH(cashbook_date) >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 MONTH),'%m')
 		GROUP BY DATE_FORMAT(cashbook_date, '%Y.%m')
 		LIMIT 3
 	</select>

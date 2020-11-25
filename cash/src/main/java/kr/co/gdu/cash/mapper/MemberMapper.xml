@@ -14,4 +14,5 @@
 		INSERT member(id,pw)
 		VALUES(#{id},#{pw})
 	</insert>
+	
 </mapper>

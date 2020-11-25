@@ -36,6 +36,9 @@
 					type:'bubble',
 					data:{
 						datasets:[{
+							scaleLabel:{
+								labelString:'수입'
+								},
 								label:'1월',
 								backgroundColor:'rgba(255, 99, 132, 0.2)',
 								data:[{
@@ -90,7 +93,7 @@
 							},
 							{
 								label:'7월',
-								backgroundColor:'rgba(255, 99, 132, 0.2)',
+								backgroundColor:'rgba(255, 255, 0, 0.2)',
 								data:[{
 										x:data.income.july,
 										y:data.expense.july,
@@ -99,7 +102,7 @@
 							},
 							{
 								label:'8월',
-								backgroundColor:'rgba(54, 162, 235, 0.2)',
+								backgroundColor:'rgba(255, 0, 0, 0.2)',
 								data:[{
 										x:data.income.august,
 										y:data.expense.august,
@@ -108,7 +111,7 @@
 							},
 							{
 								label:'9월',
-								backgroundColor:'rgba(255, 206, 86, 0.2)',
+								backgroundColor:'rgba(0, 255, 0, 0.2)',
 								data:[{
 										x:data.income.september,
 										y:data.expense.september,
@@ -117,7 +120,7 @@
 							},
 							{
 								label:'10월',
-								backgroundColor:'rgba(75, 192, 192, 0.2)',
+								backgroundColor:'rgba(0, 255, 255, 0.2)',
 								data:[{
 										x:data.income.october,
 										y:data.expense.october,
@@ -126,7 +129,7 @@
 							},
 							{
 								label:'11월',
-								backgroundColor:'rgba(153, 102, 255, 0.2)',
+								backgroundColor:'rgba(0, 0, 255, 0.2)',
 								data:[{
 										x:data.income.november,
 										y:data.expense.november,
@@ -135,14 +138,30 @@
 							},
 							{
 								label:'12월',
-								backgroundColor:'rgba(255, 159, 64, 0.2)',
+								backgroundColor:'rgba(0, 0, 0, 0.2)',
 								data:[{
 										x:data.income.december,
 										y:data.expense.december,
 										r:data.difference.december/50000
 									}]
 							}]
-						}
+						},
+						options:{
+							scales:{
+								xAxes:[{
+									scaleLabel:{
+										display:true,
+										labelString:'수입'
+										}
+									}],
+								yAxes:[{
+									scaleLabel:{
+										display:true,
+										labelString:'지출'
+										}
+									}]
+								}
+							}
 					})
 				}
 			})
@@ -156,6 +175,7 @@
 	<div>
 		<canvas id="bubbleChart" width="3"></canvas>
 	</div>
+	<br>
 	<div>
 		<table>
 			<thead>

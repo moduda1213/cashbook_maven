@@ -31,7 +31,7 @@
 		WHERE YEAR(cashbook_date) = 2020 AND cashbook_kind = "수입"
 		GROUP BY Year(cashbook_date)
 	</select>
-	<!-- 2020년 월별 지출 -->
+	<!-- chart 1,2. 2020년 월별 지출 -->
 	<select id="selectTotalOfMonthByYear" resultType="java.util.Map">
 		SELECT
 			YEAR(cashbook_date) AS year,
@@ -51,7 +51,7 @@
 		WHERE YEAR(cashbook_date) = 2020 AND cashbook_kind = "지출"
 		GROUP BY Year(cashbook_date)
 	</select>
-	<!-- 2019년 월별 지출 -->
+	<!-- chart2. 2019년 월별 지출 -->
 	<select id="selectTotalOfMonthByLastYear" resultType="java.util.Map">
 		SELECT
 			YEAR(cashbook_date) AS year,
@@ -71,7 +71,7 @@
 		WHERE YEAR(cashbook_date) = 2019 AND cashbook_kind = "지출"
 		GROUP BY Year(cashbook_date)
 	</select>
-	<!-- 2018년 월별 지출 -->
+	<!-- chart. 2018년 월별 지출 -->
 	<select id="selectTotalOfMonthByBeforeLastYear" resultType="java.util.Map">
 		SELECT
 			YEAR(cashbook_date) AS year,
@@ -91,7 +91,7 @@
 		WHERE YEAR(cashbook_date) = 2018 AND cashbook_kind = "지출"
 		GROUP BY Year(cashbook_date)
 	</select>
-	<!-- 최근 3개월간 카테고리 별 지출 -->
+	<!-- chart3. 최근 3개월간 카테고리 별 지출 -->
 	<select id="selectCategoryForThreeMonth" resultType="java.util.Map">
 		SELECT sum(case when category_name='식비' AND MONTH(cashbook_date) = DATE_FORMAT(NOW(),'%m') 
 						then cashbook_price END) currentFood,
@@ -129,7 +129,7 @@
 		FROM cashbook
 		WHERE YEAR(cashbook_date) = 2020
 	</select>
-	<!-- 18년~올해 총 지출 -->
+	<!-- chart4. 18년~올해 총 지출 -->
 	<select id="selectTotalofYearForThreeYear" resultType="java.util.Map">
 		SELECT sum(case when YEAR(cashbook_date)=2018 then cashbook_price END) beforeLastExpense,
 				sum(case when YEAR(cashbook_date)=2019 then cashbook_price END) lastYearExpense,
@@ -140,7 +140,7 @@
 		FROM cashbook
 		WHERE cashbook_kind='지출'
 	</select>
-	<!-- 올해 카테고리별 지출 빈도 -->
+	<!-- chart5. 올해 카테고리별 지출 빈도 -->
 	<select id="selectCategoryForYear" resultType="java.util.Map">
 		SELECT COUNT(case when category_name='식비' then category_name END) food,
 				COUNT(case when category_name='생활' then category_name END) life,
@@ -150,7 +150,7 @@
 				FROM cashbook
 		WHERE YEAR(cashbook_date) = 2020
 	</select>
-	<!-- 올해 매월 수입, 지출액수 차이 -->
+	<!-- chart6. 올해 매월 수입, 지출액수 차이 -->
 	<select id='selectTotalofInOut' resultType="java.util.Map">
 		SELECT SUM(case when cashbook_kind='수입' AND MONTH(cashbook_date)=1 then cashbook_price END)
 				-SUM(case when cashbook_kind='지출' AND MONTH(cashbook_date)=1 then cashbook_price END) january,
@@ -180,9 +180,3 @@
 		WHERE YEAR(cashbook_date) = 2020
 	</select>
 </mapper>
-
-
-
-
-
-

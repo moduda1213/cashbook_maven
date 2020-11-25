@@ -13,7 +13,9 @@ public interface NoticeMapper {
 	// index화면의 최근 5개공지를 보여주는 메서드
 	List<Notice> selectLatestNoiceList();
 	List<Notice> selectNoticeListByPage(Map<String,Integer> map);
+	//공지 상세보기
 	Notice selectNoticeOne(int noticeId);
+	//공지 추가
 	int addNoticeList(Notice notice);
 	int deleteNotice(int noticeId);
 	int updateNotice(Notice notice);
