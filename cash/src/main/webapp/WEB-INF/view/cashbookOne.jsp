@@ -7,7 +7,7 @@
 <title>addCashbook</title>
 </head>
 <body>
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>addCashbook</h1>
 		<table border="1">
 			<tr>

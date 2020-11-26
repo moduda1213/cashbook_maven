@@ -10,7 +10,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>cashbookList</h1>
 	<!-- 다이어리 -->
 	<div>

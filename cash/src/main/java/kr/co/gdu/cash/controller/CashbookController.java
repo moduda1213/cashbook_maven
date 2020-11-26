@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
@@ -89,6 +90,7 @@ public class CashbookController {
 		return "redirect:/admin/cashbookByDay?currentYear="+currentYear+"&currentMonth="+currentMonth+"&currentDay="+currentDay;
 	}
 	
+	//cashbook 추가
 	@PostMapping("/admin/addCashbook")
 	public String addCashbook(Cashbook cashbook) { // 커맨드객체
 		// System.out.println(cashbook);
@@ -96,13 +98,19 @@ public class CashbookController {
 		return "redirect:/admin/cashbookByMonth"; 
 	}
 	
+	//cashbook 추가 폼
 	@GetMapping("/admin/addCashbook/{currentYear}/{currentMonth}/{currentDay}")
 	public String addCashbook(Model model,
 			@PathVariable(name = "currentYear", required = true) int currentYear,
 			@PathVariable(name = "currentMonth", required = true) int currentMonth,
 			@PathVariable(name = "currentDay", required = true) int currentDay) {
+		
 		List<Category> categoryList = categoryService.getCategoryList();
+		
 		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("currentYear",currentYear);
+		model.addAttribute("currentMonth",currentMonth);
+		model.addAttribute("currentDay",currentDay);
 		return "addCashbook"; // forward
 	}
 	

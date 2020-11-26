@@ -169,8 +169,8 @@
 </script>
 </head>
 <body>
-	<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
-	<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
+	<jsp:include page ="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page ="/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
 	<h1>올해 매월 수입, 지출 액수 차이</h1>
 	<div>
 		<canvas id="bubbleChart" width="3"></canvas>

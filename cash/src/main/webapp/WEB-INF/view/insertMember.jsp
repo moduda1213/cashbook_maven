@@ -65,7 +65,7 @@
 </script>
 </head>
 <body>
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>사용자 추가</h1>
 	
 	<form method="post" action="${pageContext.request.contextPath}/admin/insertMember">

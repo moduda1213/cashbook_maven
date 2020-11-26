@@ -34,7 +34,7 @@
 </script>
 </head>
 <body>
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>공지사항</h1>
 	<a href="${pageContext.request.contextPath}/admin/updateNotice/${noticeOne.noticeId}">수정</a>
 	<a href="${pageContext.request.contextPath}/admin/removeNot	ice?noticeId=${noticeOne.noticeId}">삭제</a>

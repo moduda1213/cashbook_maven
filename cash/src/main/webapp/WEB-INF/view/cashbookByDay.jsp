@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>cashbookListByDay</h1>
 	<div>
 		<a href="${pageContext.request.contextPath}/admin/cashbookByDay/pre/${currentYear}/${currentMonth}/${currentDay}">

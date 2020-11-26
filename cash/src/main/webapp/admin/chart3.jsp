@@ -93,8 +93,8 @@
 </script>
 </head>
 <body>
-	<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
-	<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
+	<jsp:include page ="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page ="/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
 	<h1>3개월 간 카테고리별 지출</h1>
 	<div>
 		<canvas id="radarChart" width="3"></canvas>

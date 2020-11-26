@@ -112,14 +112,13 @@ public class NoticeService {
 		notice.setNoticeTitle(noticeForm.getNoticeTitle());
 		notice.setNoticeContent(noticeForm.getNoticeContent());
 		notice.setNoticeDate(noticeForm.getNoticeDate());
-		
+		noticeMapper.addNoticeList(notice);
 		//공지 파일 추가
 		List<Noticefile> noticefile=null;
 		System.out.println("---------------noticefileList : " + noticeForm.getNoticefileList() );
 		if(noticeForm.getNoticefileList() != null) {
 			noticefile = new ArrayList<Noticefile>();
 			
-			noticeMapper.addNoticeList(notice);
 			
 			for(MultipartFile mf : noticeForm.getNoticefileList()){
 				Noticefile nf = new Noticefile();

@@ -85,8 +85,8 @@ $(document).ready(function(){
 </head>
 <body>
 	<div>
-		<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
-		<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
+		<jsp:include page ="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+		<jsp:include page ="/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
 		<h1>2020년 월별 지출</h1>
 		<!-- chart -->
 		<div>

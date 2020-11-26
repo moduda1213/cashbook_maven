@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>noticeList</h1>
 	<a href="${pageContext.request.contextPath}/admin/addNotice">공지 추가</a>
 	<div>
@@ -30,13 +30,13 @@
 			</tbody>
 		</table>
 	</div>
-	<c:if test="${currentPage == 1}">
+	<c:if test="${currentPage == 1 && lastPage != 1} ">
 		<a href="">처음</a>
 		<a href="">이전</a>
 		<a href="${pageContext.request.contextPath}/admin/noticeList/${currentPage+1}">다음</a>
 		<a href="${pageContext.request.contextPath}/admin/noticeList/${lastPage}">마지막</a>
 	</c:if>
-	<c:if test="${currentPage == lastPage}">
+	<c:if test="${currentPage == lastPage && lastPage != 1}">
 		<a href="${pageContext.request.contextPath}/admin/noticeList/1">처음</a>
 		<a href="${pageContext.request.contextPath}/admin/noticeList/${currentPage-1}">이전</a>
 		<a href="">다음</a>
@@ -48,6 +48,11 @@
 		<a href="${pageContext.request.contextPath}/admin/noticeList/${currentPage+1}">다음</a>
 		<a href="${pageContext.request.contextPath}/admin/noticeList/${lastPage}">마지막</a>
 	</c:if>
-	
+	<c:if test="${currentPage ==1 && lastPage==1 }">
+		<a href="">처음</a>
+		<a href="">이전</a>
+		<a href="">다음</a>
+		<a href="">마지막</a>
+	</c:if>
 </body>
 </html>

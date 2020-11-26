@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/accountStyle.css"/>
 </head>
 <body>
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>가계부</h1>
 	<!-- 공지 -->
 	<div id="aloneText">공지사항 <a id="aloneLink" href="${pageContext.request.contextPath}/admin/noticeList/1">more</a></div>

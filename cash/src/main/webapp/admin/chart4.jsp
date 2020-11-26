@@ -62,8 +62,8 @@
 </script>
 </head>
 <body>
-	<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/menu.jsp"></jsp:include>
-	<jsp:include page ="${pageContext.request.contextPath}/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
+	<jsp:include page ="/WEB-INF/view/inc/menu.jsp"></jsp:include>
+	<jsp:include page ="/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
 	<h1>18년~올해 총 지출</h1>
 	<div>
 		<canvas id="pieChart" width='3'></canvas>
