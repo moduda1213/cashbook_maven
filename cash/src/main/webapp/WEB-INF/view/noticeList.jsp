@@ -17,18 +17,14 @@
 					<th>notice_id</th>
 					<th>notice_title</th>
 					<th>notice_date</th>
-					<th>수정</th>
-					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="n" items="${noticeListByPage}">
 					<tr>
 						<td>${n.noticeId}</td>
-						<td><a href="${pageContext.request.contextPath}/admin/noticeOne/${n.noticeId}">${n.noticeTitle}</a></td>
+						<td><a href="${pageContext.request.contextPath}/admin/noticeOne/${n.noticeId}/1">${n.noticeTitle}</a></td>
 						<td>${n.noticeDate}</td>
-						<td><a href="${pageContext.request.contextPath}/admin/updateNotice/${n.noticeId}">수정</a></td>
-						<td><a href="${pageContext.request.contextPath}/admin/removeNotice?noticeId=${n.noticeId}">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

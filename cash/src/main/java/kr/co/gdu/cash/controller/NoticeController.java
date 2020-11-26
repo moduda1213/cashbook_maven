@@ -42,12 +42,21 @@ public class NoticeController {
 	}
 	
 	//공지 상세보기
-	@GetMapping("/admin/noticeOne/{noticeId}")
+	@GetMapping("/admin/noticeOne/{noticeId}/{currentPage}")
 	public String noticeOne(Model model,
-						@PathVariable(name="noticeId") int noticeId) {
-		//noticeService 호출
-		Notice noticeOne = noticeService.getNoticeOne(noticeId);
+						@PathVariable(name="noticeId") int noticeId,
+						@PathVariable(name="currentPage") int currentPage) {
+		int rowPerPage=5; // 페이지 당 보여질 댓글 수
+		int totalComment = noticeService.getTotalComment(); //총 댓글 수
+		int lastPage=0;
+		if(totalComment % rowPerPage != 0) { // 나머지 데이터가 5개 미만 일때
+			lastPage = (totalComment / rowPerPage)+1;
+		}else {
+			lastPage = totalComment / rowPerPage;
+		}
+		Notice noticeOne = noticeService.getNoticeOne(noticeId,currentPage,rowPerPage);
 		model.addAttribute("noticeOne",noticeOne);
+		model.addAttribute("lastPage",lastPage);
 		return "noticeOne";
 	}
 	
@@ -83,7 +92,7 @@ public class NoticeController {
 	//공지 수정 폼
 	@GetMapping("/admin/updateNotice/{noticeId}")
 	public String updateNotice(Model model, @PathVariable(name="noticeId") int noticeId) {
-		Notice updateNoticeForm = noticeService.getNoticeOne(noticeId);
+		Notice updateNoticeForm = noticeService.getUpdateNoticeForm(noticeId);
 		model.addAttribute("updateNoticeForm",updateNoticeForm);
 		return "updateNotice";
 	}
@@ -93,6 +102,6 @@ public class NoticeController {
 							@RequestParam(value="noticeId") int noticeId) {
 		noticeService.updateNotice(noticeForm,noticeId);
 		
-		return "redirect:/admin/noticeOne/"+noticeId;
+		return "redirect:/admin/noticeOne/"+noticeId+"/1";
 	}
 }

@@ -40,7 +40,7 @@
 			<result property="commentContent" column="comment_content"></result>
 		</collection>
 	</resultMap>
-	<select id="selectNoticeOne" parameterType="Integer" resultMap="selectNoticeOneResult">
+	<select id="selectNoticeOne" parameterType="java.util.Map" resultMap="selectNoticeOneResult">
 		SELECT
 			n.notice_id,
 			n.notice_title,
@@ -58,10 +58,46 @@
 		LEFT JOIN noticefile nf ON n.notice_id = nf.notice_id
 		LEFT JOIN `comment` c ON n.notice_id = c.notice_id
 		WHERE n.notice_id = #{noticeId}
+		ORDER BY c.comment_id DESC
+		LIMIT #{beginRow},#{rowPerPage}
+	</select>
+	
+	<!-- 공지 수정 -->
+	<resultMap type="kr.co.gdu.cash.vo.Notice" id ="selectUpdateNoticeResult">
+		<result property="noticeId" column="notice_id"/>
+		<result property="noticeTitle" column="notice_title"/>
+		<result property="noticeContent" column="notice_content"/>
+		<result property="noticeDate" column="notice_date"/>
+		<collection property="noticefileList" ofType="kr.co.gdu.cash.vo.Noticefile">
+			<result property="noticefileId" column="noticefile_id"></result>
+			<result property="noticeId" column="notice_id"></result>
+			<result property="noticefileName" column="noticefile_name"></result>
+			<result property="noticefileType" column="noticefile_type"></result>
+			<result property="noticefileSize" column="noticefile_size"></result>
+		</collection>
+	</resultMap>
+	<select id="selectUpdateNotice" parameterType="Integer" resultMap="selectUpdateNoticeResult">
+		SELECT
+			n.notice_id,
+			n.notice_title,
+			n.notice_content,
+			n.notice_date,
+			nf.noticefile_id,
+			nf.notice_id,
+			nf.noticefile_name,
+			nf.noticefile_type,
+			nf.noticefile_size
+		FROM notice n 
+		LEFT JOIN noticefile nf ON n.notice_id = nf.notice_id
+		WHERE n.notice_id = #{noticeId}
 		ORDER BY n.notice_id
 	</select>
 	
-	
+	<!-- 총 댓글 수 -->
+	<select id="selectTotalComment" resultType="Integer">
+		SELECT COUNT(*)
+		FROM comment
+	</select>
 	
 	<!-- 공지 리스트 추가 -->
 	<insert id="addNoticeList" parameterType="kr.co.gdu.cash.vo.Notice">

@@ -23,5 +23,15 @@
 		WHERE noticefile_id=#{noticefileId}		
 	</delete>
 	
-	
+	<!-- 삭제할 리스트에 첨부된 파일이름들 -->
+	<select id="selectNoticefileName" parameterType="Integer" resultType="java.lang.String">
+		SELECT noticefile_name
+		FROM noticefile
+		WHERE notice_id = #{noticeId}
+	</select>
+	<!-- 삭제할 리스트에 첨부된 파일 정보 삭제 -->
+	<delete id="deleteNoticefile" parameterType="Integer">
+		DELETE FROM noticefile
+		WHERE notice_id=#{noticeId}
+	</delete>
 </mapper>

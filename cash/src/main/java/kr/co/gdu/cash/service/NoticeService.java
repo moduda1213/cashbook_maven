@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.gdu.cash.mapper.CashbookMapper;
+import kr.co.gdu.cash.mapper.CommentMapper;
 import kr.co.gdu.cash.mapper.NoticeMapper;
 import kr.co.gdu.cash.mapper.NoticefileMapper;
 import kr.co.gdu.cash.vo.Notice;
@@ -28,21 +29,13 @@ import kr.co.gdu.cash.vo.Noticefile;
 public class NoticeService {
 	@Autowired private NoticeMapper noticeMapper;
 	@Autowired private NoticefileMapper noticefileMapper;
+	@Autowired private CommentMapper commentMapper;
 	@Autowired private CashbookMapper cashbookMapper;
-	private final String PATH ="C:\\Users\\ECS\\Desktop\\springwork\\maven.1604882343550\\cash\\src\\main\\webapp\\upload\\";
+	private final String PATH ="D:\\springwork\\maven.1606350008125\\cash\\src\\main\\webapp\\upload\\";
 	private final Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	
 	public int totalList() {
 		return noticeMapper.totalList();
-	}
-	//파일 하나 삭제
-	public void removeUploadFileOne(int noticefileId, String noticefileName) {
-		String filename = noticefileName;
-		File file = new File(this.PATH+filename);
-		if(file.exists()) {
-			file.delete();
-		}
-		noticefileMapper.deleteNoticefileOne(noticefileId);
 	}
 	//공지 리스트 수정
 	public void updateNotice(NoticeForm noticeForm,int noticeId) {
@@ -88,11 +81,29 @@ public class NoticeService {
 			}
 		}
 	}
-		
+	
+	//파일 하나 삭제
+	public void removeUploadFileOne(int noticefileId, String noticefileName) {
+		String filename = noticefileName;
+		File file = new File(this.PATH+filename);
+		if(file.exists()) {
+			file.delete();
+		}
+		noticefileMapper.deleteNoticefileOne(noticefileId);
+	}
 	
 	//공지 리스트 삭제
-	public int deleteNotice(int noticeId) {
-		return noticeMapper.deleteNotice(noticeId);
+	public void deleteNotice(int noticeId) {
+		List<String> filenameList = noticefileMapper.selectNoticefileName(noticeId);
+		for(String s : filenameList) {
+			File file=new File(this.PATH+s);
+			if(file.exists()) {
+				file.delete();
+			}
+		}
+		commentMapper.deleteCommentAll(noticeId);
+		noticefileMapper.deleteNoticefile(noticeId);
+		noticeMapper.deleteNotice(noticeId);
 	}
 	//notice 추가
 	public void addNotice(NoticeForm noticeForm) {
@@ -138,10 +149,24 @@ public class NoticeService {
 			}
 		}
 	}
+	// 공지사항 수정 폼
+	public Notice getUpdateNoticeForm(int noticeId) {
+		return noticeMapper.selectUpdateNotice(noticeId);
+	}
 	
+	//총 댓글 수
+	public int getTotalComment() {
+		return noticeMapper.selectTotalComment();
+	}
 	//notice 상세보기
-	public Notice getNoticeOne(int noticeId) {
-		return noticeMapper.selectNoticeOne(noticeId);
+	public Notice getNoticeOne(int noticeId,int currentPage, int rowPerPage) {
+		int beginRow = (currentPage-1)*rowPerPage;
+		
+		Map<String,Integer> map = new HashMap<>();
+		map.put("beginRow", beginRow);
+		map.put("rowPerPage", rowPerPage);
+		map.put("noticeId", noticeId);
+		return noticeMapper.selectNoticeOne(map);
 	}
 	
 	//notice 더보기
