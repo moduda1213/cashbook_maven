@@ -94,9 +94,10 @@
 	</select>
 	
 	<!-- 총 댓글 수 -->
-	<select id="selectTotalComment" resultType="Integer">
+	<select id="selectTotalComment" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*)
 		FROM comment
+		WHERE notice_id=#{noticeId}
 	</select>
 	
 	<!-- 공지 리스트 추가 -->

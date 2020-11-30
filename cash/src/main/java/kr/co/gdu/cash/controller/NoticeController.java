@@ -31,7 +31,9 @@ public class NoticeController {
 		System.out.println(lastPage+"<-lastPage");
 		
 		if(total%rowPerPage != 0) {
-			lastPage += 1;
+			lastPage = (total/rowPerPage)+1;
+		}else {
+			lastPage = total/rowPerPage;
 		}
 		//noticeService 호출
 		List<Notice> noticeListByPage = noticeService.getNoticeListByPage(currentPage, rowPerPage);
@@ -47,7 +49,7 @@ public class NoticeController {
 						@PathVariable(name="noticeId") int noticeId,
 						@PathVariable(name="currentPage") int currentPage) {
 		int rowPerPage=5; // 페이지 당 보여질 댓글 수
-		int totalComment = noticeService.getTotalComment(); //총 댓글 수
+		int totalComment = noticeService.getTotalComment(noticeId); //총 댓글 수
 		int lastPage=0;
 		if(totalComment % rowPerPage != 0) { // 나머지 데이터가 5개 미만 일때
 			lastPage = (totalComment / rowPerPage)+1;

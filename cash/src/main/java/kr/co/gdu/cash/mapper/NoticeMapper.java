@@ -17,7 +17,7 @@ public interface NoticeMapper {
 	//페이징 수정 폼
 	Notice selectUpdateNotice(int noticeId);
 	//총 댓글 수(댓글 페이징)
-	int selectTotalComment();
+	int selectTotalComment(int noticeId);
 	//공지 상세보기(댓글 페이징)
 	Notice selectNoticeOne(Map<String, Integer> map);
 	//공지 추가

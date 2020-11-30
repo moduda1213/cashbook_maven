@@ -31,7 +31,9 @@ public class NoticeService {
 	@Autowired private NoticefileMapper noticefileMapper;
 	@Autowired private CommentMapper commentMapper;
 	@Autowired private CashbookMapper cashbookMapper;
-	private final String PATH ="D:\\springwork\\maven.1606350008125\\cash\\src\\main\\webapp\\upload\\";
+	//집에 있는 업로드 파일 위치
+	//private final String PATH ="D:\\springwork\\maven.1606350008125\\cash\\src\\main\\webapp\\upload\\";
+	private final String PATH ="C:\\springwork\\maven.1606481230520\\cash\\src\\main\\webapp\\upload\\";
 	private final Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	
 	public int totalList() {
@@ -154,8 +156,8 @@ public class NoticeService {
 	}
 	
 	//총 댓글 수
-	public int getTotalComment() {
-		return noticeMapper.selectTotalComment();
+	public int getTotalComment(int noticeId) {
+		return noticeMapper.selectTotalComment(noticeId);
 	}
 	//notice 상세보기
 	public Notice getNoticeOne(int noticeId,int currentPage, int rowPerPage) {
