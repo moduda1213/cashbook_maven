@@ -21,7 +21,7 @@
 		</a>
 		
 	</div>
-	<a href="${pageContext.request.contextPath}/admin/addCashbook/${currentYear}/${currentMonth}/${currentDay}">수입/지출 입력</a>
+	<a href="${pageContext.request.contextPath}/admin/addCashbook/${target}/${currentYear}/${currentMonth}/${currentDay}">수입/지출 입력</a>
 	<table border="1">
 		<thead>
 			<tr>

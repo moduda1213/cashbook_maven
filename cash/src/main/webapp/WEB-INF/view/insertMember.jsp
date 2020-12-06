@@ -23,8 +23,7 @@
 						}else if($('#id').val()==''){
 							alert('ID를 입력하세요.');
 							$('#id').focus();
-						}
-						else{
+						}else{
 							alert($(id).val()+'사용중인 ID입니다.');
 							$('#id').val('');
 							$('#id').focus();

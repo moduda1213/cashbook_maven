@@ -87,20 +87,24 @@ public class CashbookController {
 			@RequestParam(name = "currentMonth", required = true) int currentMonth,
 			@RequestParam(name = "currentDay", required = true) int currentDay){
 		cashbookService.deleteCashook(cashbookId);
-		return "redirect:/admin/cashbookByDay?currentYear="+currentYear+"&currentMonth="+currentMonth+"&currentDay="+currentDay;
+		return "redirect:/admin/cashbookByDay/now/"+currentYear+"/"+currentMonth+"/"+currentDay;
 	}
 	
 	//cashbook 추가
 	@PostMapping("/admin/addCashbook")
-	public String addCashbook(Cashbook cashbook) { // 커맨드객체
+	public String addCashbook(Cashbook cashbook,// 커맨드객체
+							@RequestParam(value="currentYear") int currentYear, 
+							@RequestParam(value="currentMonth") int currentMonth,
+							@RequestParam(value="currentDay") int currentDay) { //redirect path경로 이름 맞추기 위해 추가
 		// System.out.println(cashbook);
 		cashbookService.addCashbook(cashbook);
-		return "redirect:/admin/cashbookByMonth"; 
+		return "redirect:/admin/cashbookByDay/now/"+currentYear+"/"+currentMonth+"/"+currentDay; 
 	}
 	
 	//cashbook 추가 폼
-	@GetMapping("/admin/addCashbook/{currentYear}/{currentMonth}/{currentDay}")
+	@GetMapping("/admin/addCashbook/{target}/{currentYear}/{currentMonth}/{currentDay}")
 	public String addCashbook(Model model,
+			@PathVariable(name = "target", required=true) String target,
 			@PathVariable(name = "currentYear", required = true) int currentYear,
 			@PathVariable(name = "currentMonth", required = true) int currentMonth,
 			@PathVariable(name = "currentDay", required = true) int currentDay) {
@@ -111,10 +115,11 @@ public class CashbookController {
 		model.addAttribute("currentYear",currentYear);
 		model.addAttribute("currentMonth",currentMonth);
 		model.addAttribute("currentDay",currentDay);
+		model.addAttribute("target",target);
 		return "addCashbook"; // forward
 	}
 	
-	
+	// 선택한 날짜 가계부 목록
 	@GetMapping("/admin/cashbookByDay/{target}/{currentYear}/{currentMonth}/{currentDay}")
 	public String cashbookByDay(Model model,
 			@PathVariable(name = "target") String target,
@@ -126,9 +131,9 @@ public class CashbookController {
 		targetDay.set(Calendar.MONTH, currentMonth-1);
 		targetDay.set(Calendar.DATE, currentDay);
 		if(target.equals("pre")) {
-		targetDay.add(Calendar.DATE, -1);
+			targetDay.add(Calendar.DATE, -1);
 		} else if(target.equals("next")) {
-		targetDay.add(Calendar.DATE, 1);
+			targetDay.add(Calendar.DATE, 1);
 		}
 		
 		List<Cashbook> cashbookList = cashbookService.getCashbookListByDay(

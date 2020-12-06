@@ -33,7 +33,11 @@ public class NoticeService {
 	@Autowired private CashbookMapper cashbookMapper;
 	//집에 있는 업로드 파일 위치
 	//private final String PATH ="D:\\springwork\\maven.1606350008125\\cash\\src\\main\\webapp\\upload\\";
+	//aws 서버 업로드 파일 위치
+	//private final String PATH ="/home/ubuntu/tomcat9/webapps/cash/upload#";
+	//학원에 업로드 위치
 	private final String PATH ="C:\\springwork\\maven.1606481230520\\cash\\src\\main\\webapp\\upload\\";
+	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	
 	public int totalList() {
