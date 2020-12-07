@@ -59,6 +59,8 @@
 		</table>
 		<br>
 		<!-- 파일 -->
+		<!-- aws 서버 업로드 파일 위치  <a href="/cash/upload/${nf.noticefileName}">${nf.noticefileName }</a>  -->
+		<!-- 로컬 업로드 파일 위치 <a href="${pageContext.request.contextPath }/upload/${nf.noticefileName }">${nf.noticefileName }</a> -->
 		<table border="1">
 			<tr>
 				<th>첨부 파일</th>
