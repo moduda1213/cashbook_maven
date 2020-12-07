@@ -14,6 +14,7 @@ public class CommentService {
 	
 	//댓글 추가
 	public void addComment(Comment comment) {
+		comment.getCommentContent().replaceAll("(?i)<script", "&lt;script");//스크립트 방지
 		commentMapper.insertComment(comment);
 	}
 	//댓글 삭제
@@ -22,6 +23,7 @@ public class CommentService {
 	}
 	//댓글 수정
 	public void updateComment(Comment comment) {
+		comment.getCommentContent().replaceAll("(?i)<script", "&lt;script");
 		commentMapper.updateComment(comment);
 	}
 }

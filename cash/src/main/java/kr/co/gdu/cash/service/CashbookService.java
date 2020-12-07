@@ -33,23 +33,25 @@ public class CashbookService {
 		map.put("rowPerPage", rowPerPage);
 		return cashBookMapper.selectCashbookListByPage(map);
 	}
-	
+	//가계부 수정
 	public int updateCashbook(Cashbook cashbook) {
+		cashbook.getCashbookContent().replaceAll("(?i)<script", "&lt;script");//스크립트가 db 접근 방지
 		return cashBookMapper.updateCashbook(cashbook);
 	}
-	
+	//가계부 상세보기
 	public Cashbook getCashbookOne(int cashbookId) {
 		return cashBookMapper.selectCashbookOne(cashbookId);
 	}
-	
+	// 가계부 삭제
 	public int deleteCashook(int cashbookId) {
 		return cashBookMapper.deleteCashbook(cashbookId);
 	}
-	
+	//가계부 추가
 	public int addCashbook(Cashbook cashbook) {
+		cashbook.getCashbookContent().replaceAll("(?i)<script", "&lt;script");
 		return cashBookMapper.insertCashbook(cashbook);
 	}
-	
+	// 해당 일의 가계부 리스트 출력
 	public List<Cashbook> getCashbookListByDay(int currentYear, int currentMonth, int currentDay) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("currentYear", currentYear);
@@ -57,14 +59,14 @@ public class CashbookService {
 		map.put("currentDay", currentDay);
 		return cashBookMapper.selectCashBookListByDay(map);
 	}
-	
+	// 달력에 출력될 가계부 금액 리스트
 	public List<Map<String, Object>> getCashListByMonth(int currentYear, int currentMonth) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("currentYear", currentYear);
 		map.put("currentMonth", currentMonth);
 		return cashBookMapper.selectCashListByMonth(map);
 	}
-	
+	// 가계부 수입/지출 합계
 	public int getSumCashbookPriceByInOut(String cashbookKind, int currentYear, int currentMonth) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cashbookKind", cashbookKind);

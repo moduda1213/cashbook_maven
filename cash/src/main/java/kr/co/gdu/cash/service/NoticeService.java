@@ -31,12 +31,12 @@ public class NoticeService {
 	@Autowired private NoticefileMapper noticefileMapper;
 	@Autowired private CommentMapper commentMapper;
 	@Autowired private CashbookMapper cashbookMapper;
-	//집에 있는 업로드 파일 위치
-	private final String PATH ="D:\\springwork\\maven.1606350008125\\cash\\src\\main\\webapp\\upload\\";
+	//학원 업로드 파일 위치
+	//private final String PATH ="D:\\springwork\\maven.1606350008125\\cash\\src\\main\\webapp\\upload\\";
 	//aws 서버 업로드 파일 위치
 	//private final String PATH ="/home/ubuntu/tomcat9/webapps/cash/upload/"; 
-	//학원에 업로드 위치
-	//private final String PATH ="C:\\springwork\\maven.1606481230520\\cash\\src\\main\\webapp\\upload\\";
+	//집에 있는 업로드 위치
+	private final String PATH ="C:\\Users\\ECS\\Desktop\\springwork\\maven.1604882343550\\cash\\src\\main\\webapp\\upload\\";
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	
@@ -48,8 +48,8 @@ public class NoticeService {
 		Notice notice = new Notice();
 		
 		notice.setNoticeId(noticeId);
-		notice.setNoticeTitle(noticeForm.getNoticeTitle());
-		notice.setNoticeContent(noticeForm.getNoticeContent());
+		notice.setNoticeTitle(noticeForm.getNoticeTitle().replaceAll("(?i)<script", "&lt;script")); //스크립트가 db에 입력되는 것을 방지
+		notice.setNoticeContent(noticeForm.getNoticeContent().replaceAll("(?i)<script", "&lt;script"));
 		notice.setNoticeDate(noticeForm.getNoticeDate());
 		noticeMapper.updateNotice(notice);
 		
@@ -115,8 +115,8 @@ public class NoticeService {
 	public void addNotice(NoticeForm noticeForm) {
 		//공지 제목,내용,작성일자 추가
 		Notice notice = new Notice();
-		notice.setNoticeTitle(noticeForm.getNoticeTitle());
-		notice.setNoticeContent(noticeForm.getNoticeContent());
+		notice.setNoticeTitle(noticeForm.getNoticeTitle().replaceAll("(?i)<script", "&lt;script"));
+		notice.setNoticeContent(noticeForm.getNoticeContent().replaceAll("(?i)<script", "&lt;script"));
 		notice.setNoticeDate(noticeForm.getNoticeDate());
 		noticeMapper.addNoticeList(notice);
 		//공지 파일 추가
