@@ -5,6 +5,7 @@
 - jquery , jstl , html, java, css , chartjs 사용
 - 댓글 기능과 회원가입에서 ajax 사용
 - DB에 script문 접근을 막기 위해 replace를 사용
+- http://my-moduda.p-e.kr/cash - aws 서버에 올린 프로그램 링크 : 즉시 테스트 가능
 
 ## 기능
 
